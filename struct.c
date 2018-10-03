@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 struct majors {
-  char *name;
+  char name[40];
   int count;
 };
 
@@ -16,18 +17,27 @@ struct majors randomMajor() {
   int r = rand() % 15;
 
   struct majors m;
-  m.name = all[r];
+  strcpy(m.name, all[r]);
   m.count = nums[r];
   return m;
 }
 
-char * stringify(struct majors m) {
-  char *s = m.name;
-  char ret[100] = "Structure: Majors\nName: " + s + "\nCount: " + m.count + "\n";
-  return ret;
+void printStruct(struct majors m) {
+  printf("Structure: Majors\nName: %s\nCount: %d\n", m.name, m.count);
+}
+
+void modifyCount(struct majors *m, int a) {
+  m -> count += a;
+}
+
+void appendStr(struct majors *m, char *s) {
+  strcat(m -> name, s);
 }
 
 int main() {
-  printf("Test case: %s", stringify(randomMajor()));
+  struct majors temp = randomMajor();
+  printStruct(temp);
+  modify(&temp, 1000001, "poop");
+  printStruct(temp);
   return 0;
 }
