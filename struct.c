@@ -9,9 +9,13 @@ struct majors {
 };
 
 struct majors randomMajor() {
-  char all[15][40] = {"Computer Science","Computer Enginnering","Electrical Engineering","Mathematics","Physics","Biology","Chemistry", "History", "Paleontology", "Astronomy", "Philosophy", "Oceanology", "Mechanical Engineering", "English Literature", "Acting"};
+  char all[15][40] = {"Computer Science","Computer Enginnering","Electrical Engineering","Mathematics","Physics",
+                      "Biology","Chemistry","History", "Paleontology", "Astronomy",
+                      "Philosophy", "Oceanology", "Mechanical Engineering", "English Literature", "Acting"};
 
-  int nums[] = {839, 1023, 439, 504, 209, 1123, 647, 154, 80, 50, 82, 25, 889, 432, 242};
+  int nums[] = {839, 1023, 439, 504, 209,
+                1123, 647, 154, 80, 50,
+                82, 25, 889, 432, 242};
 
   srand(time(NULL));
   int r = rand() % 15;
@@ -23,7 +27,7 @@ struct majors randomMajor() {
 }
 
 void printStruct(struct majors m) {
-  printf("Structure: Majors\nName: %s\nCount: %d\n", m.name, m.count);
+  printf("Structure: Majors\nName: %s\nCount: %d\n----------\n", m.name, m.count);
 }
 
 void modifyCount(struct majors *m, int a) {
@@ -36,8 +40,13 @@ void appendStr(struct majors *m, char *s) {
 
 int main() {
   struct majors temp = randomMajor();
+  printf("\n\nOur struct looks like this in the beginning:\n");
   printStruct(temp);
-  modify(&temp, 1000001, "poop");
+  printf("\nAdding 1234 to the count:\n");
+  modifyCount(&temp, 1234);
+  printStruct(temp);
+  printf("\nAppending ' & More' to the name:\n");
+  appendStr(&temp," & More");
   printStruct(temp);
   return 0;
 }
