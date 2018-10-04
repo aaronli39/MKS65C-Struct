@@ -38,6 +38,26 @@ void appendStr(struct majors *m, char *s) {
   strcat(m -> name, s);
 }
 
+int isVowel(char c) {
+  char vowels[5] = "aeiou";
+  int i;
+  for (i=0; i<5;i++){
+    if (vowels[i] == c){
+      return 1;
+    }
+  }
+  return 0;
+}
+
+void vowelToQuestionMark(struct majors *m){
+  int i;
+  for (i=0; m -> name[i];i++){
+    if (isVowel(m -> name[i])){
+      m -> name[i] = '?';
+    }
+  }
+}
+
 int main() {
   struct majors temp = randomMajor();
   printf("\n\nOur struct looks like this in the beginning:\n");
@@ -47,6 +67,9 @@ int main() {
   printStruct(temp);
   printf("\nAppending ' & More' to the name:\n");
   appendStr(&temp," & More");
+  printStruct(temp);
+  printf("\nChanging all vowels to '?':\n");
+  vowelToQuestionMark(&temp);
   printStruct(temp);
   return 0;
 }
