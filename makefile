@@ -6,6 +6,7 @@ struct.o: struct.c
 
 clear:
 	rm *.o
+	rm *.out
 
 run:
 	./a.out
